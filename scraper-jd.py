@@ -531,7 +531,11 @@ class JDWrapper(object):
 				
 			# retry detail
 			#good_data = self.good_detail(options.good)
-			
+
+		price = float(good_data['price'])
+		if price >= options.less:
+			print u'Now price {0}'.format(price)
+			return
 
 		# failed 
 		link = good_data['link']
@@ -730,6 +734,8 @@ if __name__ == '__main__':
 	parser.add_argument('-s', '--submit', 
 						action='store_true',
 						help='Submit the order to Jing Dong')
+	parser.add_argument('-l', '--less', type=int,
+						help='Less price', default=sys.maxint)
 				
 	# example goods
 	hw_watch = '2567304'
